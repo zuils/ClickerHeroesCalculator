@@ -210,7 +210,6 @@ var AncientsExtraInfo = {
     },
     "nogardnit": { // Idle
         "goalIdle": function(baseLevel, oldLevel, alpha, transcended, wepwawetLeveledBeyond8k, hybridRatio) {
-            baseLevel = Decimal.max(baseLevel, baseLevel.times(hybridRatio));
             if(wepwawetLeveledBeyond8k) {
                 return baseLevel.times(0.905).pow(0.8);
             } else {
