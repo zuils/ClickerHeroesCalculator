@@ -22,8 +22,9 @@ function maxTpReward() {
  
 function hpScaleFactor() { 
     var zone = data.ascensionZone;
+    var i = zone.dividedBy(500).floor()
     var scale = zone < 200001 
-        ? Decimal.pow(zone,0.002).times(0.001).plus(1.145) 
+        ? i.times(0.001).plus(1.145) 
         : 1.545;
     return scale;
 }
