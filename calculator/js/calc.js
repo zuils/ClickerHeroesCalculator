@@ -108,7 +108,7 @@ function computeOptimalLevels(tuneAncient, addLevels) {
             }
             
             if (goalFun) {
-                var g = goalFun(baseLevel, oldLevel, alpha, transcendent, data.settings.wep8k, hybridRatio);
+                var g = goalFun(baseLevel, oldLevel, alpha, transcendent, data.settings.wep8k, hybridRatio, data.settings.scouts);
                 
                 data.ancients[k].extraInfo.optimalLevel = Decimal.max(data.ancients[k].level, g.ceil());
             }
