@@ -21,7 +21,7 @@ $(document).ready(function () {
         importSaveGame(true);
     });
     
-    $('#addsouls, #wep8k, #copyancientlevels, [name="buildmode"], #keepsoulsforregilding, #ignoreminimizedancients')
+    $('#addsouls, #wep8k, #scouts, #copyancientlevels, [name="buildmode"], #keepsoulsforregilding, #ignoreminimizedancients')
     .on("click", function () {
         console.log("Working...");
         importSaveGame();
@@ -38,6 +38,10 @@ $(document).ready(function () {
 
     $('#wep8k').change(function () {
         saveSettingCheckBox("#wep8k");
+    });
+
+    $('#scouts').change(function () {
+        saveSettingCheckbox("#scouts")
     });
 
     $('#copyancientlevels').change(function () {
@@ -175,6 +179,7 @@ function loadAllSettings() {
     var strSettingsCheckBox = [
         "#addsouls",
         "#wep8k",
+        "#scouts",
         "#copyancientlevels",
         "#displayadvancedconfiguration",
         "#displaysavegamegeneration",
@@ -237,7 +242,7 @@ function saveSetting(key, val) {
             if (!saveSettingError) {
                 saveSettingError = true;
                 
-                showModal('En error occurred', '<p>Your browser prevented settings from being saved.</p><p>The error given was:</p><p><code>' + e + '</code></p>');
+                showModal('En error occurred (in the spelling too apparently)', '<p>Your browser prevented settings from being saved.</p><p>The error given was:</p><p><code>' + e + '</code></p>');
             }
         }
     }
@@ -457,6 +462,7 @@ function importSaveGame(force) {
         // Read on-page settings
         data.settings.includeSoulsAfterAscension = $("#addsouls").prop("checked");
         data.settings.wep8k = $("#wep8k").prop("checked");
+        data.settings.scouts = $("#scouts").prop("checked");
         data.settings.copyAncientLevelsToClipboard = $("#copyancientlevels").prop("checked");
         data.settings.buildMode = $('input[name="buildmode"]:checked').val();
         data.settings.hybridRatio = $('#hybridratio').slider('getValue');
