@@ -24,7 +24,7 @@ function hpScaleFactor() {
     var zone = data.ascensionZone;
     var scale = zone < 200001 
         ? Decimal.pow(zone,0.002).times(0.001).plus(1.145) 
-        : 1.0001;
+        : 1.545;
     return scale;
 }
 
