@@ -22,17 +22,19 @@ function maxTpReward() {
  
 function hpScaleFactor() { 
     var zone = data.ascensionZone;
-    var i = zone.dividedBy(500).floor();
-    var scale = i.times(0.005).plus(1.145);
+    var scale = zone < 200001 
+        ? Decimal.pow(zone,0.002).times(0.001).plus(1.145) 
+        : 1.0001;
     return scale;
 }
 
-function alphaFactor(wepwawetLeveledBeyond8k) { 
-    if(wepwawetLeveledBeyond8k) {
+function alphaFactor(wepwawetLeveledBeyond8k,highestHeroIsScout) { 
+    if(highestHeroIsScout) {
+        return data.tp.dividedBy(100).plus(1).ln().times(-0.5134328).dividedBy(hpScaleFactor().ln());
+    } else if (wepwawetLeveledBeyond8k) {
         return data.tp.dividedBy(100).plus(1).ln().times(1.1085).dividedBy(hpScaleFactor().ln());
     } else {
         return data.tp.dividedBy(100).plus(1).ln().times(1.4067).dividedBy(hpScaleFactor().ln());
-        
     }
 }
 
@@ -74,6 +76,7 @@ function computeOptimalLevels(tuneAncient, addLevels) {
         // Test if this ancient is to be excluded
         if (data.ancients[k].extraInfo.exclude && data.ancients[k].extraInfo.exclude()) {
             continue;
+        if (
         }
         
         var oldLevel = data.ancients[k].level;
