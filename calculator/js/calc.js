@@ -71,7 +71,7 @@ export function calculate() {
 }
 
 function computeOptimalLevels(tuneAncient, addLevels) {
-    var alpha = alphaFactor(data.settings.wep8k);
+    var alpha = alphaFactor(data.settings.wep8k,data.settings.scouts);
     var transcendent = alpha > 0;
     
     var baseLevel = tuneAncient.level.plus(addLevels);
