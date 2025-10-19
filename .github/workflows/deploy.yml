@@ -29,7 +29,7 @@ jobs:
       # 🧹 Clean and format LICENSE file
       - name: Generate clean LICENSE file
         run: |
-          LICENSE_FILE=$(find dist -name "*.LICENSE.txt" | head -n 1)
+          LICENSE_FILE=$(find dist -name "*.LICENSE.txt" -or -name "*.js.LICENSE.txt" | head -n 1)
           if [ -f "$LICENSE_FILE" ]; then
             echo "Generating clean LICENSE..."
             # Strip comment characters and normalize spacing
