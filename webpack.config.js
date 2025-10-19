@@ -16,6 +16,7 @@ module.exports = {
   output: {
     path: __dirname + "/dist/",
     filename: "[name]-[fullhash].js",
+    clean: true,
   },
   module: {
     rules: [
@@ -40,13 +41,13 @@ module.exports = {
       excludeChunks: ["light", "dark"],
       minify: production
         ? {
-            removeAttributeQuotes: true,
-            collapseWhitespace: true,
-            html5: true,
-            minifyCSS: true,
-            removeComments: false,
-            removeEmptyAttributes: true,
-          }
+          removeAttributeQuotes: true,
+          collapseWhitespace: true,
+          html5: true,
+          minifyCSS: true,
+          removeComments: false,
+          removeEmptyAttributes: true,
+        }
         : false,
     }),
     new MiniCssExtractPlugin({
