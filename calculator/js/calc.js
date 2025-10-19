@@ -84,7 +84,6 @@ function computeOptimalLevels(tuneAncient, addLevels) {
         // Test if this ancient is to be excluded
         if (data.ancients[k].extraInfo.exclude && data.ancients[k].extraInfo.exclude()) {
             continue;
-        if (
         }
         
         var oldLevel = data.ancients[k].level;
