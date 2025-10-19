@@ -1,4 +1,4 @@
-
+/*!
    *  decimal.js v10.4.1
    *  An arbitrary-precision Decimal type for JavaScript.
    *  https://github.com/MikeMcl/decimal.js
@@ -6,11 +6,13 @@
    *  MIT Licence
    */
 
+/*!
   * Bootstrap v4.6.2 (https://getbootstrap.com/)
   * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 
+/*!
  * Sizzle CSS Selector Engine v2.3.6
  * https://sizzlejs.com/
  *
@@ -21,6 +23,7 @@
  * Date: 2021-02-16
  */
 
+/*!
  * jQuery JavaScript Library v3.6.1
  * https://jquery.com/
  *
@@ -34,10 +37,11 @@
  * Date: 2022-08-26T17:52Z
  */
 
- =======================================================
-                      VERSION  10.6.2
+/*! =======================================================
+                      VERSION  10.6.2              
 ========================================================= */
 
+/**
  * @license
  * Lodash <https://lodash.com/>
  * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
@@ -46,6 +50,7 @@
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
 
+/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
  * @version 1.16.1
  * @license
