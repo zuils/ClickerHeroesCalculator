@@ -23,16 +23,26 @@ function maxTpReward() {
 function hpScaleFactor() { 
     var zone = data.ascensionZone;
     var i = zone.dividedBy(500).floor();
-    var scale = i.times(0.005).plus(1.145);
+    var scale; 
+    if (zone < 141) {
+        scale = 1.55;
+    } else if (zone < 501) {
+        scale = 1.145;
+    } else if (zone < 200001) {
+        scale = i.times(0.001).plus(1.145);
+    } else {
+        scale = 1.545;
+    }
     return scale;
 }
 
-function alphaFactor(wepwawetLeveledBeyond8k) { 
-    if(wepwawetLeveledBeyond8k) {
+function alphaFactor(wepwawetLeveledBeyond8k,highestHeroIsScout) { 
+    if(highestHeroIsScout) {
+        return data.tp.dividedBy(100).plus(1).ln().times(-0.5134328).dividedBy(hpScaleFactor().ln());
+    } else if (wepwawetLeveledBeyond8k) {
         return data.tp.dividedBy(100).plus(1).ln().times(1.1085).dividedBy(hpScaleFactor().ln());
     } else {
         return data.tp.dividedBy(100).plus(1).ln().times(1.4067).dividedBy(hpScaleFactor().ln());
-        
     }
 }
 
@@ -61,7 +71,7 @@ export function calculate() {
 }
 
 function computeOptimalLevels(tuneAncient, addLevels) {
-    var alpha = alphaFactor(data.settings.wep8k);
+    var alpha = alphaFactor(data.settings.wep8k,data.settings.scouts);
     var transcendent = alpha > 0;
     
     var baseLevel = tuneAncient.level.plus(addLevels);
@@ -97,7 +107,7 @@ function computeOptimalLevels(tuneAncient, addLevels) {
             }
             
             if (goalFun) {
-                var g = goalFun(baseLevel, oldLevel, alpha, transcendent, data.settings.wep8k, hybridRatio);
+                var g = goalFun(baseLevel, oldLevel, alpha, transcendent, data.settings.wep8k, hybridRatio, data.settings.scouts);
                 
                 data.ancients[k].extraInfo.optimalLevel = Decimal.max(data.ancients[k].level, g.ceil());
             }
