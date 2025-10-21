@@ -4,7 +4,7 @@
   "repository": "https://github.com/Beskhue/ClickerHeroesCalculator.git",
   "author": "Beskhue",
   "scripts": {
-    "build": "webpack --mode production && mv dist/*.LICENSE.txt dist/LICENSE || true"
+    "build": "webpack --mode development"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
