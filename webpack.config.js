@@ -16,7 +16,6 @@ module.exports = {
   output: {
     path: __dirname + "/dist/",
     filename: "[name]-[fullhash].js",
-    clean: true,
   },
   module: {
     rules: [
