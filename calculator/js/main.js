@@ -20,24 +20,24 @@ $(document).ready(function () {
         console.log("Working...");
         importSaveGame(true);
     });
-    
-    $('#addsouls, #wep8k, #copyancientlevels, [name="buildmode"], #keepsoulsforregilding, #ignoreminimizedancients')
-    .on("click", function () {
-        console.log("Working...");
-        importSaveGame();
-    });
-    
+
+    $('#addsouls, #heroTypeSelect, #copyancientlevels, [name="buildmode"], #keepsoulsforregilding, #ignoreminimizedancients')
+        .on("click", function () {
+            console.log("Working...");
+            importSaveGame();
+        });
+
     $("#soulsin").on("blur", function () {
         console.log("Working...");
         manualHeroSoulEntry();
     });
-    
+
     $('#addsouls').change(function () {
         saveSettingCheckBox("#addsouls");
     });
 
-    $('#wep8k').change(function () {
-        saveSettingCheckBox("#wep8k");
+    $('#heroTypeSelect').change(function () {
+        saveSettingField("#heroTypeSelect");
     });
 
     $('#copyancientlevels').change(function () {
@@ -48,7 +48,7 @@ $(document).ready(function () {
         saveSettingCheckBox('#displayadvancedconfiguration');
         showHideAdvancedConfigurationContainer();
     });
-    
+
     $('#displaysavegamegeneration').change(function () {
         saveSettingCheckBox('#displaysavegamegeneration');
         showHideGeneratedSaveGameContainer();
@@ -58,7 +58,7 @@ $(document).ready(function () {
         saveBuildMode();
         showHideHybridRatioContainer();
     });
-    
+
     $("input[name=theme]:radio").change(function () {
         saveTheme();
         setTheme();
@@ -75,7 +75,7 @@ $(document).ready(function () {
     $("#skillancientsrate").change(function () {
         saveSettingField("#skillancientsrate");
     });
-    
+
     $("#precision").change(function () {
         saveSettingField("#precision");
     });
@@ -93,29 +93,29 @@ $(document).ready(function () {
         doOrDoNotCollapseAncientTableOnSmallScreens();
     });
 
-    $('#import-button').click(function(){
+    $('#import-button').click(function () {
         // collapse if small
-        if($("#input-collapse-btn").is(":visible") && $("#input-collapse").is(":visible")){
+        if ($("#input-collapse-btn").is(":visible") && $("#input-collapse").is(":visible")) {
             $("#input-collapse").collapse('hide');
             $("#config-collapse").collapse('hide');
         }
     });
-    
+
     $('#generatedsavedata').on('focus click', function () {
         $(this).select();
         if ($("#copyancientlevels").prop("checked") && document.queryCommandSupported('copy')) {
             document.execCommand('copy');
         }
     });
-    
+
     // Load settings
     loadAllSettings();
 
     window.data = require(__dirname + '/data/ClickerHeroes_v14307.json');
     model.createObjects(data);
-    window.Items = {items: {}, slots: {}};    // No relics.
+    window.Items = { items: {}, slots: {} };    // No relics.
     showTables();
-    
+
     // Set up hybrid ratio slider
     $('#hybridratio').slider({
         formatter: function (value) {
@@ -149,7 +149,7 @@ $(document).ready(function () {
     $('#skillancientsrate').on("slideStop", function () {
         importSaveGame();
     });
-    
+
     // Set up precision slider
     $('#precision').slider({
         formatter: function (value) {
@@ -171,10 +171,10 @@ $(document).ready(function () {
     doOrDoNotCollapseAncientTableOnSmallScreens();
 });
 
-function loadAllSettings() { 
+function loadAllSettings() {
     var strSettingsCheckBox = [
         "#addsouls",
-        "#wep8k",
+        "#heroTypeSelect",
         "#copyancientlevels",
         "#displayadvancedconfiguration",
         "#displaysavegamegeneration",
@@ -196,8 +196,8 @@ function loadAllSettings() {
     ];
 
     var strCustomSave = [];
-    
-    if (typeof(Storage) !== "undefined") {
+
+    if (typeof (Storage) !== "undefined") {
         for (var i in strCustomSave) {
             if (localStorage.hasOwnProperty(i)) {
                 strCustomSave[i] = localStorage[i];
@@ -230,14 +230,14 @@ function loadAllSettings() {
 
 var saveSettingError = false;
 function saveSetting(key, val) {
-    if (typeof(Storage) !== "undefined") {
+    if (typeof (Storage) !== "undefined") {
         try {
             localStorage[key] = val;
         } catch (e) {
             if (!saveSettingError) {
                 saveSettingError = true;
-                
-                showModal('En error occurred', '<p>Your browser prevented settings from being saved.</p><p>The error given was:</p><p><code>' + e + '</code></p>');
+
+                showModal('En error occurred (in the spelling too apparently)', '<p>Your browser prevented settings from being saved.</p><p>The error given was:</p><p><code>' + e + '</code></p>');
             }
         }
     }
@@ -421,7 +421,7 @@ function SetDifference(a, b) {
 function showModal(title, content, btn) {
     // btn = "Get it" default
     btn = utils.defaultFor(btn, "Got it");
-    
+
     $('#modal-title').html(title);
     $('#modal-body').html(content);
     $('#modal-btn').html(btn);
@@ -431,32 +431,32 @@ function showModal(title, content, btn) {
 function importSaveGame(force) {
     // force = false default
     force = utils.defaultFor(force, false);
-    
+
     var saveData = $("#savedata").val()
-    
+
     if (!saveData && !force) {
         return;
     }
-    
+
     try {
         var rawDataAlgo = utils.decodeSaveGame(saveData);
     } catch (e) {
         showModal('Oops!', '<p>Could not decode the save game data.</p><p>The error given was:</p><p><code>' + e + '</code></p>', 'Close');
         throw e;
     }
-    
+
     try {
         var rawData = rawDataAlgo.data;
-        
+
         // Create data structure
         data.settings = {};
-        
+
         // Store the save-file encoding algorithm used
         data.encodeAlgo = rawDataAlgo.algo;
-        
+
         // Read on-page settings
+        data.settings.heroTypeSelected = $("#heroTypeSelected").val();
         data.settings.includeSoulsAfterAscension = $("#addsouls").prop("checked");
-        data.settings.wep8k = $("#wep8k").prop("checked");
         data.settings.copyAncientLevelsToClipboard = $("#copyancientlevels").prop("checked");
         data.settings.buildMode = $('input[name="buildmode"]:checked').val();
         data.settings.hybridRatio = $('#hybridratio').slider('getValue');
@@ -468,10 +468,10 @@ function importSaveGame(force) {
 
         // Set precision
         configureDecimal(Math.ceil(data.settings.precision) + 3);
-        
+
         // Older saves won't have items.
-        data.items = rawData.hasOwnProperty("items") ? rawData.items : {items: {}, slots: {}};
-        
+        data.items = rawData.hasOwnProperty("items") ? rawData.items : { items: {}, slots: {} };
+
         data.heroSoulsSacrificed = new Decimal(rawData.heroSoulsSacrificed);
 
         // Calculate total HS earned
@@ -559,7 +559,7 @@ function importSaveGame(force) {
         showModal('An error occurred', '<p>The save game data appears to be malformed.</p><p>The error given was:</p><p><code>' + e + '</code></p>', 'Close');
         throw e;
     }
-    
+
     // Calculate
     var dateTimeBefore = new Date();
     try {
@@ -568,12 +568,12 @@ function importSaveGame(force) {
         showModal('An error occurred', '<p>Something went wrong while calculating.</p><p>The error given was:</p><p><code>' + e + '</code></p>', 'Close');
         throw e;
     }
-    
+
     var dateTimeAfter = new Date();
-    
+
     var elapsed = dateTimeAfter - dateTimeBefore;
     $("#calculationtime").html("Calculation took " + utils.numberToString(elapsed / 1000, 3) + " seconds");
-    
+
     // Enable field to enter available HS manually
     $('#soulsin').prop('disabled', false);
 }
@@ -612,13 +612,13 @@ function display(spentHS) {
             ancient.ui.change.val(utils.numberToStringFormatted(ancient.extraInfo.optimalLevel.minus(ancient.level)));
             ancient.ui.cost.text(utils.numberToStringFormatted(ancient.extraInfo.costToLevelToOptimal));
 
-            ancient.ui.targetBox.attr("style","display:auto;");
+            ancient.ui.targetBox.attr("style", "display:auto;");
 
         } else {
-            ancient.ui.targetBox.attr("style","display:none");
+            ancient.ui.targetBox.attr("style", "display:none");
         }
     }
-    
+
     $("#ancienttbl tr:visible").each(function (index, row) {
         $(row).removeClass('odd_row');
         if (index % 2 == 1) { //odd row
