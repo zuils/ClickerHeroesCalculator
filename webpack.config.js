@@ -8,7 +8,6 @@ const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
   mode: production ? "production" : "development",
-  devtool: production ? "source-map" : "eval-source-map",
   entry: {
     main: [__dirname + "/calculator/js/main.js"],
     light: [__dirname + "/calculator/scss/light.scss"],
@@ -36,11 +35,6 @@ module.exports = {
       },
     ],
   },
-  optimization: production
-    ? undefined
-    : {
-      minimize: false,
-    },
   plugins: [
     new HtmlWebpackPlugin({
       template: "calculator/html/index.html",
