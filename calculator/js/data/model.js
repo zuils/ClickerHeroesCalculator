@@ -325,8 +325,8 @@ var AncientsExtraInfo = {
         }
     },
     "sniperino": {
-        "goalIdle": "exclude",
-        "goalHybrid": "goalIdle",
+        "goalIdle": null,
+        "goalHybrid": "goalActive",
         "goalActive": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
             baseLevel = Decimal.max(
                 baseLevel.times(new Decimal(data.settings.skillAncientsLevelRate).pow(2)),
