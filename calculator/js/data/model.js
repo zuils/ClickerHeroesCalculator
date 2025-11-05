@@ -224,17 +224,7 @@ var AncientsExtraInfo = {
         "exclude": null
     },
     "nogardnit": { // Idle
-        "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
-            if (heroTypeSelected == "base") {
-                return baseLevel.times(0.9262).pow(0.8);
-            } else if (heroTypeSelected == "e9") {
-                return baseLevel.times(0.9053).pow(0.8);
-            } else if (heroTypeSelected == "e10") {
-                return baseLevel.times(0.943).pow(0.8);
-            } else {
-                return baseLevel.times(1.1788).pow(0.8);
-            }
-        },
+        "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) { return baseLevel.times(hybridRatio).pow(0.8); },
         "goalHybrid": "goalIdle",
         "goalActive": null,
         "exclude": null
