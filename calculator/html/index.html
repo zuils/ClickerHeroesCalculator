@@ -102,7 +102,7 @@
                             <div class="panel-settings mt-3">
                                 <div class="form-check">
                                     <label class="form-check-label mb-2" for="heroTypeSelect">
-                                        Best hero:
+                                        Best hero this transcension:
                                     </label>
                                     <select class="form-select mb-2" id="heroTypeSelected">
                                         <option value="base" selected>Treebeast - Lvl 7,999 Wepwawet</option>
@@ -318,6 +318,8 @@
                             </table>
                             <small id="calculationtime" class="text-muted"></small>
                         </div>
+
+                        <!-- Might want to remove outsiders tab to prevent confusion with the outsider calc. -->
                         <div role="tabpanel" class="tab-pane" id="tab-outsiders">
                             <table id="outsidertbl" class="table table-striped">
                                 <thead>
@@ -427,7 +429,7 @@
                             <h3>What is the easiest method to level ancients?</h3>
                             <p>If you press on the number in the <em>change</em> field, the number changes to a long
                                 format
-                                and is automatically selected for copying. If you hold &quot;v&quot; when clicking on
+                                and is automatically selected, ready for copying. If you hold &quot;v&quot; when clicking on
                                 the
                                 corresponding ancient's purchase button, an input field will pop up. Paste the number
                                 you
@@ -454,12 +456,12 @@
 
                             <h3>What does this &quot;best hero&quot; option mean?</h3>
                             <p>Different heroes have different optimal damage-to-gold ratios when buying ancients. 
-                                Levelling heroes below Tsuchi, reaching the next hero is most important, so gold is slightly stronger.
-                                When Wep reaches level 8000, these boosts run out and getting the next hero takes longer so is less important.
-                                This makes damage ancients slightly more important. Once you get xavira, the damage scaling per 25 levels increases to 4.5x,
-                                making gold slightly stronger again.
-                                The Ace Scouts are significantly different in scaling, with 1.22x cost per level, 1000x damage per 25 zones. 
-                                Gold is made much stronger with this scaling, as the Scouts are incredibly gold efficient.
+                                When levelling heroes below Tsuchi, reaching the next hero is important, which makes gold ancients slightly stronger than they would otherwise be.
+                                When Wepwawet reaches level 8000, his 10x boosts every 1000 levels run out, making gold ancients slightly less impactful than before.
+                                Once you get Xavira, the damage scaling per 25 hero levels increases to 4.5x, increasing the
+                                relative value of gold ancients.
+                                The Ace Scouts are significantly different in scaling, with 1.22x cost per level instead of 1.07x, and 1000x damage per 25 levels. 
+                                Gold is made much stronger with this scaling, as the Scouts are incredibly gold efficient - so much so that gold ancients are more impactful than damage ancients!
 
                                 
                                 NOTE:
@@ -484,6 +486,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <tr>
+                                        <td>2025/11/29</td>
+                                        <td>More FAQ updates, made "Best Hero" option more clear.</td>
+                                    </tr>
                                     <tr>
                                         <td>2025/10/25</td>
                                         <td>FAQ updates, fixed another bug with Nogardnit still being treated as a gold ancient in modern version.</td>
