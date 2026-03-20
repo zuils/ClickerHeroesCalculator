@@ -14,6 +14,10 @@ var EmptyExtraInfo = {
 // Base level for idle: Siyalatas' level
 // Base level for hybrid: Siyalatas' level
 // Base level for active: Fragsworth's level
+const EarlygameGoldRatio = Math.sqrt(1+(ln(0.007368))/(15 * ln(10)));
+const TsuchiGoldRatio = 0.2*Math.sqrt(ln(4)/ln(1.07));
+const XaviraGoldRatio = 0.2*Math.sqrt(ln(4.5)/ln(1.07));
+const ScoutsGoldRatio = 0.2*Math.sqrt(ln(1000)/ln(1.22));
 var AncientsExtraInfo = {
     "solomon": { // Both
         "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
@@ -59,13 +63,13 @@ var AncientsExtraInfo = {
     "libertas": { // Idle
         "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
             if (heroTypeSelected == "base") {
-                return baseLevel.times(0.9262);
+                return baseLevel.times(EarlygameGoldRatio);
             } else if (heroTypeSelected == "e9") {
-                return baseLevel.times(0.9053);
+                return baseLevel.times(TsuchiGoldRatio);
             } else if (heroTypeSelected == "e10") {
-                return baseLevel.times(0.943);
+                return baseLevel.times(XaviraGoldRatio);
             } else {
-                return baseLevel.times(1.1788);
+                return baseLevel.times(ScoutsGoldRatio);
             }
         },
         "goalHybrid": "goalIdle",
@@ -76,13 +80,13 @@ var AncientsExtraInfo = {
         "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
             baseLevel = Decimal.max(baseLevel, baseLevel.times(hybridRatio));
             if (heroTypeSelected == "base") {
-                return baseLevel.times(0.9262);
+                return baseLevel.times(EarlygameGoldRatio);
             } else if (heroTypeSelected == "e9") {
-                return baseLevel.times(0.9053);
+                return baseLevel.times(TsuchiGoldRatio);
             } else if (heroTypeSelected == "e10") {
-                return baseLevel.times(0.943);
+                return baseLevel.times(XaviraGoldRatio);
             } else {
-                return baseLevel.times(1.1788);
+                return baseLevel.times(ScoutsGoldRatio);
             }
         },
         "goalHybrid": "goalIdle",
@@ -93,13 +97,13 @@ var AncientsExtraInfo = {
         "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
             baseLevel = Decimal.max(baseLevel, baseLevel.times(hybridRatio));
             if (heroTypeSelected == "base") {
-                return baseLevel.times(0.9262);
+                return baseLevel.times(EarlygameGoldRatio);
             } else if (heroTypeSelected == "e9") {
-                return baseLevel.times(0.9053);
+                return baseLevel.times(TsuchiGoldRatio);
             } else if (heroTypeSelected == "e10") {
-                return baseLevel.times(0.943);
+                return baseLevel.times(XaviraGoldRatio);
             } else {
-                return baseLevel.times(1.1788);
+                return baseLevel.times(ScoutsGoldRatio);
             }
         },
         "goalHybrid": "goalIdle",
@@ -112,13 +116,13 @@ var AncientsExtraInfo = {
         "goalActive": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) {
             baseLevel = Decimal.max(baseLevel, baseLevel.times(hybridRatio));
             if (heroTypeSelected == "base") {
-                return baseLevel.times(0.9262);
+                return baseLevel.times(EarlygameGoldRatio);
             } else if (heroTypeSelected == "e9") {
-                return baseLevel.times(0.9053);
+                return baseLevel.times(TsuchiGoldRatio);
             } else if (heroTypeSelected == "e10") {
-                return baseLevel.times(0.943);
+                return baseLevel.times(XaviraGoldRatio);
             } else {
-                return baseLevel.times(1.1788);
+                return baseLevel.times(ScoutsGoldRatio);
             }
         },
         "exclude": null
