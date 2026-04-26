@@ -36,8 +36,8 @@ $(document).ready(function () {
         saveSettingCheckBox("#addsouls");
     });
 
-    $('#heroTypeSelect').change(function () {
-        saveSettingField("#heroTypeSelect");
+    $('#heroTypeSelected').change(function () {
+        saveSettingField("#heroTypeSelected");
     });
 
     $('#copyancientlevels').change(function () {
@@ -174,7 +174,6 @@ $(document).ready(function () {
 function loadAllSettings() {
     var strSettingsCheckBox = [
         "#addsouls",
-        "#heroTypeSelect",
         "#copyancientlevels",
         "#displayadvancedconfiguration",
         "#displaysavegamegeneration",
@@ -182,17 +181,18 @@ function loadAllSettings() {
         "#ignoreminimizedancients",
         "#collapseancienttableonsmallscreens"
     ];
-
+    
     var strSettingsRadio = [
         "buildmode",
         "theme"
     ];
-
+    
     var strSettingsList = [
         "#hybridratio",
         "#revolcrate",
         "#skillancientsrate",
-        "#precision"
+        "#precision",
+        "#heroTypeSelected"
     ];
 
     var strCustomSave = [];
