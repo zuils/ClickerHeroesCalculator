@@ -227,7 +227,7 @@ var AncientsExtraInfo = {
         "exclude": null
     },
     "nogardnit": { // Idle
-        "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) { return baseLevel.times(hybridRatio).pow(0.8); },
+        "goalIdle": function (baseLevel, oldLevel, alpha, transcended, heroTypeSelected, hybridRatio) { return baseLevel.pow(0.8); },
         "goalHybrid": "goalIdle",
         "goalActive": null,
         "exclude": null
